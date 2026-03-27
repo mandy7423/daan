@@ -76,6 +76,9 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--t1);
 .fg textarea{resize:none;line-height:1.5}
 .fr{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .input-note{font-size:11px;color:var(--t3);margin-top:5px}
+.field-err{font-size:12px;color:#c0392b;margin-top:4px;display:none}
+.field-err.show{display:block}
+.fg input.err{border-color:#e57373;box-shadow:0 0 0 3px rgba(229,115,115,.15)}
 
 .pay-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
 .pay-opt{border:1.5px solid var(--bd);border-radius:var(--rs);padding:12px 8px;cursor:pointer;transition:all .18s;display:flex;flex-direction:column;align-items:center;gap:5px;background:var(--sf);user-select:none}
@@ -187,14 +190,24 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--t1);
     <div class="section-title">填寫資料</div>
     <div class="form-card">
 
+      <!-- 班級 3碼防呆 -->
       <div class="fr">
         <div class="fg">
-          <label>小朋友班級<span class="req">*</span></label>
-          <input type="text" id="f-class" placeholder="例：三年二班">
+          <label>班級<span class="req">*</span></label>
+          <input type="text" id="f-class" placeholder="101" maxlength="3" inputmode="numeric"
+            oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+            onblur="checkClass(this)">
+          <div class="input-note">3碼：年級＋班級，例 101＝1年1班、312＝3年12班</div>
+          <div class="field-err" id="err-class"></div>
         </div>
+        <!-- 座號 2碼防呆 -->
         <div class="fg">
           <label>座號<span class="req">*</span></label>
-          <input type="number" id="f-seat" placeholder="18" min="1" max="60">
+          <input type="text" id="f-seat" placeholder="01" maxlength="2" inputmode="numeric"
+            oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+            onblur="checkSeat(this)">
+          <div class="input-note">2碼，個位數請補零，例 01、09、21</div>
+          <div class="field-err" id="err-seat"></div>
         </div>
       </div>
 
@@ -219,11 +232,30 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--t1);
         </div>
       </div>
 
+      <div class="conditional" id="zone-cash">
+        <div class="notice notice-warn" style="margin:0 0 1rem;border-radius:var(--rs)">
+          <span class="notice-icon">📌</span>
+          <div>請於訂購截止前攜帶現金至家長會辦公室繳交，並告知班級座號，謝謝！</div>
+        </div>
+      </div>
+
+      <div class="fg">
+        <label>備註（選填）</label>
+        <textarea id="f-note" rows="2" placeholder="例：需要收據、其他說明…"></textarea>
+      </div>
+
+      <!-- 公告欄（從設定工作表的 announce 欄位讀取） -->
+      <div id="announce-box" style="display:none;margin-top:.5rem;padding:14px;background:var(--g5);border:1px solid var(--g3);border-radius:var(--rs);font-size:13px;color:var(--g2);line-height:1.8;white-space:pre-line"></div>
+
+      <!-- 匯款區：移至最下方，選銀行匯款才顯示 -->
       <div class="conditional" id="zone-transfer">
+        <div style="border-top:1px solid var(--bd);margin:.75rem 0 1rem"></div>
+        <div style="font-size:13px;font-weight:700;color:var(--t2);margin-bottom:.75rem">💳 請完成匯款後填寫以下資料</div>
+        <div id="transfer-recap" style="background:var(--g1);border-radius:var(--rs);padding:10px 14px;margin-bottom:1rem;font-size:13px;color:rgba(255,255,255,.9)"></div>
         <div class="fg">
           <label>轉帳帳號後五碼<span class="req">*</span></label>
           <input type="text" id="f-acct5" placeholder="例：12345" maxlength="5" inputmode="numeric">
-          <div class="input-note">完成匯款後再填寫</div>
+          <div class="input-note">請核對上方帳號後再填寫</div>
         </div>
         <div class="fr">
           <div class="fg">
@@ -245,18 +277,6 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--t1);
             <img id="receipt-preview" class="upload-preview" alt="匯款截圖預覽">
           </div>
         </div>
-      </div>
-
-      <div class="conditional" id="zone-cash">
-        <div class="notice notice-warn" style="margin:0 0 1rem;border-radius:var(--rs)">
-          <span class="notice-icon">📌</span>
-          <div>請於訂購截止前攜帶現金至家長會辦公室繳交，並告知班級座號，謝謝！</div>
-        </div>
-      </div>
-
-      <div class="fg">
-        <label>備註（選填）</label>
-        <textarea id="f-note" rows="2" placeholder="例：需要收據、其他說明…"></textarea>
       </div>
 
     </div>
@@ -285,7 +305,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--t1);
 
 <script>
 // ★ 請將這裡替換成您的 Apps Script 部署網址
-const API = 'https://script.google.com/macros/s/AKfycbzo2yCURKWeNvVejI2y4bj8PajStL7XnPfFv4N9gob-C1hQ6Rthzf9YicIeDwNyE7hMhA/exec';
+const API = 'https://script.google.com/macros/s/AKfycbzxpna9-xet8DvpVtlLoYS8et4nf9OUzqGGlx_Q46H9mE9IlKOsQG1lk0WZI9ma3DUGkA/exec';
 
 let storeData = null;
 let cart = {};
@@ -308,7 +328,8 @@ function loadDemo() {
   storeData = {
     open: true,
     settings: { bank:'玉山銀行 (808)', acct:'0000-000-000000', holder:'大安國小家長會',
-                title:'大安國小家長會義賣', subtitle:'感謝您的支持！所得將用於校園美化' },
+                title:'大安國小家長會義賣', subtitle:'感謝您的支持！所得將用於校園美化',
+                announce:'💚 每筆義賣收入將全額用於校園美化及學生活動，感謝您的慷慨支持！鼓勵大家多捐款，讓孩子們有更好的學習環境！' },
     period: { start:'', end:'', msg:'' },
     products: [
       { id:1, name:'手工餅乾禮盒', desc:'媽媽親手製作，共12入，香酥可口', emoji:'🍪', photo:'', price:150, stock:30, min:1, max:5 },
@@ -346,6 +367,12 @@ function render() {
   }
   document.getElementById('f-date').value = new Date().toISOString().split('T')[0];
   document.getElementById('f-time').value = new Date().toTimeString().slice(0,5);
+  // 公告欄
+  if (settings.announce) {
+    const ab = document.getElementById('announce-box');
+    ab.textContent = settings.announce;
+    ab.style.display = 'block';
+  }
   renderProducts(storeData.products);
 }
 
@@ -421,6 +448,12 @@ function selectPay(m) {
   document.getElementById('zone-cash').classList.toggle('show', m==='cash');
   document.getElementById('submit-hint').textContent =
     m==='transfer' ? '送出後請完成匯款並保留截圖' : '送出後請攜帶現金至家長會繳交';
+  // 在匯款區顯示帳號摘要，方便家長核對
+  if (m==='transfer' && storeData) {
+    const s = storeData.settings;
+    document.getElementById('transfer-recap').innerHTML =
+      `銀行：${s.bank||'—'}　帳號：${s.acct||'—'}　戶名：${s.holder||'—'}`;
+  }
 }
 
 function previewImg(input) {
@@ -439,10 +472,13 @@ async function submitOrder() {
   }).filter(x=>x.qty>0);
   if (!items.length) { showToast('請先選擇商品'); return; }
   if (!payMethod)    { showToast('請選擇繳費方式'); return; }
-  const cls  = document.getElementById('f-class').value.trim();
-  const seat = document.getElementById('f-seat').value.trim();
+  const clsEl  = document.getElementById('f-class');
+  const seatEl = document.getElementById('f-seat');
+  const cls  = clsEl.value.trim();
+  const seat = seatEl.value.trim();
   const name = document.getElementById('f-name').value.trim();
-  if (!cls||!seat||!name) { showToast('請填寫班級、座號、家長姓名'); return; }
+  if (!checkClass(clsEl)|!checkSeat(seatEl)) { showToast('班級或座號格式不正確'); return; }
+  if (!name) { showToast('請填寫家長姓名'); return; }
 
   let a5='', tDate='', tTime='', receiptB64='';
   if (payMethod==='transfer') {
@@ -507,6 +543,37 @@ async function submitOrder() {
     btn.disabled = false;
     btn.innerHTML = '確認送出訂單';
   }
+}
+
+// ── 班級防呆（3碼，首碼1-6，後兩碼01-20）────────────────────
+function checkClass(el) {
+  const v = el.value;
+  const err = document.getElementById('err-class');
+  if (!/^[1-6][0-9]{2}$/.test(v)) {
+    el.classList.add('err');
+    err.textContent = '請填3碼數字，例：101、312';
+    err.classList.add('show');
+    return false;
+  }
+  el.classList.remove('err');
+  err.classList.remove('show');
+  return true;
+}
+
+// ── 座號防呆（2碼，01-60）────────────────────────────────────
+function checkSeat(el) {
+  const v = el.value;
+  const err = document.getElementById('err-seat');
+  const n = parseInt(v);
+  if (!/^[0-9]{2}$/.test(v) || n < 1 || n > 60) {
+    el.classList.add('err');
+    err.textContent = '請填2碼，01～60，例：01、09、21';
+    err.classList.add('show');
+    return false;
+  }
+  el.classList.remove('err');
+  err.classList.remove('show');
+  return true;
 }
 
 function showToast(msg) {
