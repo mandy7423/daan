@@ -211,9 +211,15 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--t1);
         </div>
       </div>
 
-      <div class="fg">
-        <label>家長姓名<span class="req">*</span></label>
-        <input type="text" id="f-name" placeholder="請填寫家長姓名">
+      <div class="fr">
+        <div class="fg">
+          <label>學生姓名<span class="req">*</span></label>
+          <input type="text" id="f-student" placeholder="請填寫學生姓名">
+        </div>
+        <div class="fg">
+          <label>家長姓名<span class="req">*</span></label>
+          <input type="text" id="f-name" placeholder="請填寫家長姓名">
+        </div>
       </div>
 
       <div class="fg">
@@ -305,7 +311,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--t1);
 
 <script>
 // ★ 請將這裡替換成您的 Apps Script 部署網址
-const API = 'https://script.google.com/macros/s/AKfycbzxpna9-xet8DvpVtlLoYS8et4nf9OUzqGGlx_Q46H9mE9IlKOsQG1lk0WZI9ma3DUGkA/exec';
+const API = 'https://script.google.com/macros/s/AKfycbziAQwq9oTkojubHuXCYONaAni86AsFiFjmlGRwM5ukjwaGQvslexmc5AIXoyfoustobA/exec';
 
 let storeData = null;
 let cart = {};
@@ -476,8 +482,10 @@ async function submitOrder() {
   const seatEl = document.getElementById('f-seat');
   const cls  = clsEl.value.trim();
   const seat = seatEl.value.trim();
+  const student = document.getElementById('f-student').value.trim();
   const name = document.getElementById('f-name').value.trim();
   if (!checkClass(clsEl)|!checkSeat(seatEl)) { showToast('班級或座號格式不正確'); return; }
+  if (!student) { showToast('請填寫學生姓名'); return; }
   if (!name) { showToast('請填寫家長姓名'); return; }
 
   let a5='', tDate='', tTime='', receiptB64='';
@@ -507,7 +515,7 @@ async function submitOrder() {
     if (API !== 'YOUR_SCRIPT_URL') {
       const d = await fetch(API, {
         method:'POST',
-        body: JSON.stringify({ action:'submitOrder', class:cls, seat, name, payMethod,
+        body: JSON.stringify({ action:'submitOrder', class:cls, seat, student, name, payMethod,
           acct5:a5, transferDate:tDate, transferTime:tTime,
           receiptImage: receiptB64, note:document.getElementById('f-note').value, items, total }),
         headers:{'Content-Type':'text/plain'}
@@ -519,7 +527,7 @@ async function submitOrder() {
         if (p) p.stock = Math.max(0, p.stock-item.qty);
       });
     }
-    const s = storeData.settings;
+    const s = storeData.settings; const student = data.student||'';
     document.getElementById('main-content').style.display = 'none';
     document.getElementById('submit-area').style.display = 'none';
     document.getElementById('success-page').style.display = 'flex';
@@ -529,6 +537,7 @@ async function submitOrder() {
     document.getElementById('order-receipt').innerHTML = `
       <div class="receipt-row"><span class="receipt-label">訂單編號</span><span class="receipt-val">#${orderNo}</span></div>
       <div class="receipt-row"><span class="receipt-label">班級 / 座號</span><span class="receipt-val">${cls} ${seat}號</span></div>
+      <div class="receipt-row"><span class="receipt-label">學生姓名</span><span class="receipt-val">${student}</span></div>
       <div class="receipt-row"><span class="receipt-label">家長姓名</span><span class="receipt-val">${name}</span></div>
       <div class="receipt-row"><span class="receipt-label">訂購商品</span><span class="receipt-val">${items.map(i=>`${i.name}×${i.qty}`).join('<br>')}</span></div>
       <div class="receipt-row"><span class="receipt-label">繳費方式</span><span class="receipt-val">${payMethod==='transfer'?'銀行匯款':'現金繳交至家長會'}</span></div>
