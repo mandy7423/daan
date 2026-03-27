@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta name="theme-color" content="#1a5c38">
-<title>班親會義賣訂購</title>
+<title>大安國小家長會義賣</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root {
   --g1:#1a5c38; --g2:#2D6A4F; --g3:#52B788; --g4:#95D5B2; --g5:#D8F3DC;
-  --a1:#b84a1e; --a2:#E36F3A; --a3:#f4a26a;
+  --a1:#b84a1e; --a2:#E36F3A;
   --bg:#f7f9f7; --sf:#ffffff; --sf2:#f0f4f1;
   --bd:#dde8e0; --t1:#141a16; --t2:#3d5247; --t3:#7a9485;
   --r:14px; --rs:8px;
@@ -20,77 +20,84 @@
 html{scroll-behavior:smooth}
 body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--t1);min-height:100vh;padding-bottom:120px}
 
-/* ── HEADER ── */
-.site-header{background:var(--g1);padding:0;position:relative;overflow:hidden}
+.site-header{background:var(--g1);position:relative;overflow:hidden}
 .site-header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(255,255,255,.03) 0,rgba(255,255,255,.03) 1px,transparent 1px,transparent 12px);pointer-events:none}
 .header-inner{position:relative;padding:1.5rem 1.25rem 1.25rem;display:flex;flex-direction:column;gap:6px}
 .header-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:4px 12px;font-size:12px;color:rgba(255,255,255,.9);width:fit-content}
-.header-title{font-size:24px;font-weight:900;color:#fff;letter-spacing:-0.3px;line-height:1.2}
+.header-title{font-size:24px;font-weight:900;color:#fff;letter-spacing:-.3px;line-height:1.2}
 .header-sub{font-size:13px;color:rgba(255,255,255,.75);margin-top:2px}
 .period-bar{background:rgba(255,255,255,.1);border-top:1px solid rgba(255,255,255,.1);padding:10px 1.25rem;display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.85)}
 .period-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:blink 1.5s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
 
-/* ── NOTICE ── */
 .notice{margin:1rem 1rem 0;padding:12px 16px;border-radius:var(--rs);font-size:13px;line-height:1.6;display:flex;gap:10px;align-items:flex-start}
 .notice-warn{background:#fff8e1;border:1px solid #ffc107;color:#7a5200}
-.notice-closed{background:#fff3f3;border:1px solid #ffcdd2;color:#8b2020}
 .notice-icon{font-size:16px;flex-shrink:0;margin-top:1px}
 
-/* ── TRANSFER BOX ── */
 .transfer-section{margin:1rem 1rem 0}
 .transfer-card{background:var(--g1);border-radius:var(--r);padding:1.25rem;position:relative;overflow:hidden}
 .transfer-card::after{content:'';position:absolute;right:-20px;top:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.06);pointer-events:none}
-.transfer-label{font-size:11px;color:rgba(255,255,255,.7);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
+.transfer-label{font-size:11px;color:rgba(255,255,255,.7);font-weight:700;letter-spacing:1px;margin-bottom:10px}
 .transfer-bank{font-size:14px;color:rgba(255,255,255,.85);margin-bottom:4px}
 .transfer-acct{font-size:22px;font-weight:900;color:#fff;letter-spacing:3px;line-height:1}
 .transfer-holder{font-size:12px;color:rgba(255,255,255,.6);margin-top:4px}
 
-/* ── SECTION ── */
 .section{padding:1.25rem 1rem 0}
-.section-title{font-size:13px;font-weight:700;color:var(--t3);letter-spacing:.5px;text-transform:uppercase;margin-bottom:.75rem;display:flex;align-items:center;gap:6px}
+.section-title{font-size:13px;font-weight:700;color:var(--t3);letter-spacing:.5px;margin-bottom:.75rem;display:flex;align-items:center;gap:6px}
 .section-title::after{content:'';flex:1;height:1px;background:var(--bd)}
 
-/* ── PRODUCT CARD ── */
 .products-list{display:flex;flex-direction:column;gap:.75rem}
 .product-card{background:var(--sf);border-radius:var(--r);border:1.5px solid var(--bd);box-shadow:var(--shadow);overflow:hidden;transition:border-color .2s}
 .product-card.has-qty{border-color:var(--g3)}
 .product-card.sold-out{opacity:.65}
-.product-top{display:flex;gap:0}
-.product-img{width:110px;height:110px;flex-shrink:0;object-fit:cover;background:var(--sf2);display:flex;align-items:center;justify-content:center;font-size:48px}
+.product-top{display:flex}
+.product-img{width:110px;height:110px;flex-shrink:0;background:var(--sf2);display:flex;align-items:center;justify-content:center;font-size:48px;overflow:hidden}
 .product-img img{width:100%;height:100%;object-fit:cover}
 .product-info{flex:1;padding:.85rem .85rem .75rem;display:flex;flex-direction:column;gap:4px;min-width:0}
-.product-name{font-size:15px;font-weight:800;line-height:1.3;color:var(--t1)}
+.product-name{font-size:15px;font-weight:800;line-height:1.3}
 .product-desc{font-size:12px;color:var(--t3);line-height:1.5}
 .product-price{font-size:20px;font-weight:900;color:var(--a1);margin-top:auto;padding-top:6px}
-.product-stock{font-size:11px;color:var(--t3);font-weight:500}
+.product-stock{font-size:11px;color:var(--t3)}
 .product-bottom{border-top:1px solid var(--bd);padding:.75rem .85rem;display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--sf2)}
 .sold-out-badge{font-size:12px;font-weight:700;color:#c0392b;background:#fdecea;padding:4px 12px;border-radius:20px}
-.qty-hint{font-size:11px;color:var(--t3)}
-.qty-control{display:flex;align-items:center;gap:10px}
-.qty-btn{width:36px;height:36px;border-radius:50%;border:2px solid var(--g3);background:var(--sf);color:var(--g2);font-size:20px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;line-height:1;flex-shrink:0}
-.qty-btn:hover{background:var(--g3);color:#fff}
-.qty-btn:active{transform:scale(.92)}
-.qty-display{font-size:18px;font-weight:900;color:var(--t1);min-width:28px;text-align:center}
-.qty-subtotal{font-size:13px;font-weight:700;color:var(--g2);margin-left:auto}
+.qty-hint{font-size:11px;color:var(--t3);flex-shrink:0}
+.qty-wrap{display:flex;align-items:center;gap:8px;margin-left:auto}
+.qty-inp{width:68px;height:38px;border:1.5px solid var(--g3);border-radius:var(--rs);font-size:16px;font-weight:700;text-align:center;font-family:inherit;color:var(--t1);background:var(--sf)}
+.qty-inp:focus{outline:none;box-shadow:0 0 0 3px rgba(82,183,136,.2)}
+.qty-subtotal{font-size:13px;font-weight:700;color:var(--g2);min-width:64px;text-align:right}
 
-/* ── FORM ── */
 .form-card{background:var(--sf);border-radius:var(--r);border:1.5px solid var(--bd);box-shadow:var(--shadow);padding:1.25rem}
 .fg{margin-bottom:1rem}
 .fg:last-child{margin-bottom:0}
 .fg label{display:block;font-size:13px;font-weight:700;color:var(--t2);margin-bottom:6px}
-.fg label .req{color:#e53935;margin-left:2px}
+.req{color:#e53935;margin-left:2px}
 .fg input,.fg select,.fg textarea{width:100%;padding:11px 14px;border:1.5px solid var(--bd);border-radius:var(--rs);font-size:15px;font-family:inherit;color:var(--t1);background:var(--sf);transition:border .2s,box-shadow .2s;-webkit-appearance:none}
 .fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--g3);box-shadow:0 0 0 3px rgba(82,183,136,.15)}
 .fg textarea{resize:none;line-height:1.5}
 .fr{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .input-note{font-size:11px;color:var(--t3);margin-top:5px}
-.select-wrap{position:relative}
-.select-wrap::after{content:'▾';position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--t3);pointer-events:none;font-size:14px}
-.select-wrap select{padding-right:36px}
 
-/* ── SUMMARY ── */
-.summary-card{background:linear-gradient(135deg,var(--g1) 0%,var(--g2) 100%);border-radius:var(--r);padding:1.25rem;color:#fff}
+.pay-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+.pay-opt{border:1.5px solid var(--bd);border-radius:var(--rs);padding:12px 8px;cursor:pointer;transition:all .18s;display:flex;flex-direction:column;align-items:center;gap:5px;background:var(--sf);user-select:none}
+.pay-opt:hover{border-color:var(--g3);background:var(--g5)}
+.pay-opt.selected{border-color:var(--g1);background:var(--g5);box-shadow:0 0 0 2px var(--g3)}
+.pay-opt-icon{font-size:26px}
+.pay-opt-label{font-size:14px;font-weight:700;color:var(--t2)}
+.pay-opt-sub{font-size:11px;color:var(--t3);text-align:center;line-height:1.4}
+.pay-opt.selected .pay-opt-label{color:var(--g1)}
+
+.conditional{display:none}
+.conditional.show{display:block}
+
+.upload-area{border:2px dashed var(--g3);border-radius:var(--rs);padding:1.25rem;text-align:center;cursor:pointer;transition:background .2s;background:var(--sf);position:relative;overflow:hidden}
+.upload-area:hover{background:var(--g5)}
+.upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.upload-icon{font-size:28px;margin-bottom:6px}
+.upload-text{font-size:13px;color:var(--t2);font-weight:600}
+.upload-hint-text{font-size:11px;color:var(--t3);margin-top:3px}
+.upload-preview{width:100%;max-height:200px;object-fit:contain;border-radius:var(--rs);margin-top:10px;display:none;border:1px solid var(--bd)}
+
+.summary-card{background:var(--g1);border-radius:var(--r);padding:1.25rem;color:#fff}
 .summary-items{margin-bottom:1rem}
 .summary-row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;font-size:14px;color:rgba(255,255,255,.8);border-bottom:1px solid rgba(255,255,255,.1)}
 .summary-row:last-child{border-bottom:none}
@@ -98,21 +105,18 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--t1);
 .summary-empty{font-size:14px;color:rgba(255,255,255,.5);text-align:center;padding:8px 0}
 .summary-total{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid rgba(255,255,255,.25);margin-top:4px}
 .summary-total-label{font-size:13px;color:rgba(255,255,255,.75)}
-.summary-total-amt{font-size:28px;font-weight:900;color:#fff}
+.summary-total-amt{font-size:28px;font-weight:900}
 
-/* ── SUBMIT ── */
 .submit-area{position:fixed;bottom:0;left:0;right:0;background:var(--sf);border-top:1px solid var(--bd);padding:12px 1rem;z-index:100;box-shadow:0 -4px 20px rgba(0,0,0,.08)}
-.submit-btn{width:100%;padding:16px;background:var(--g1);color:#fff;border:none;border-radius:var(--rs);font-size:16px;font-weight:900;cursor:pointer;font-family:inherit;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;letter-spacing:.3px}
+.submit-btn{width:100%;padding:16px;background:var(--g1);color:#fff;border:none;border-radius:var(--rs);font-size:16px;font-weight:900;cursor:pointer;font-family:inherit;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
 .submit-btn:hover{background:var(--g2)}
 .submit-btn:active{transform:scale(.98)}
 .submit-btn:disabled{background:var(--t3);cursor:not-allowed;transform:none}
 .submit-hint{text-align:center;font-size:11px;color:var(--t3);margin-top:6px}
 
-/* ── SPINNER ── */
 .spin{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite;flex-shrink:0}
 @keyframes sp{to{transform:rotate(360deg)}}
 
-/* ── SUCCESS ── */
 .success-page{display:none;flex-direction:column;align-items:center;padding:3rem 1.5rem 2rem;text-align:center}
 .success-icon{font-size:72px;margin-bottom:1rem;animation:pop .5s cubic-bezier(.36,.07,.19,.97)}
 @keyframes pop{0%{transform:scale(0)}80%{transform:scale(1.15)}100%{transform:scale(1)}}
@@ -126,22 +130,19 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--t1);
 .receipt-total{color:var(--a1);font-size:18px}
 .back-btn{margin-top:1.5rem;padding:12px 32px;background:var(--g5);color:var(--g1);border:2px solid var(--g3);border-radius:var(--rs);font-size:15px;font-weight:700;cursor:pointer;font-family:inherit}
 
-/* ── CLOSED PAGE ── */
 .closed-page{display:none;flex-direction:column;align-items:center;justify-content:center;padding:4rem 1.5rem;text-align:center;min-height:60vh}
 .closed-icon{font-size:64px;margin-bottom:1rem}
-.closed-title{font-size:20px;font-weight:800;color:var(--t1);margin-bottom:8px}
+.closed-title{font-size:20px;font-weight:800;margin-bottom:8px}
 .closed-msg{font-size:14px;color:var(--t2);line-height:1.7}
 </style>
 </head>
 <body>
 
-<!-- ========== MAIN CONTENT ========== -->
 <div id="main-content">
 
-  <!-- HEADER -->
   <div class="site-header">
     <div class="header-inner">
-      <div class="header-badge">🌿 班親會義賣活動</div>
+      <div class="header-badge">🌿 大安國小家長會義賣活動</div>
       <div class="header-title" id="site-title">義賣訂購</div>
       <div class="header-sub" id="site-sub">載入中…</div>
     </div>
@@ -151,20 +152,17 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--t1);
     </div>
   </div>
 
-  <!-- NOTICES -->
   <div id="notices-area"></div>
 
-  <!-- TRANSFER INFO -->
   <div class="transfer-section">
     <div class="transfer-card">
-      <div class="transfer-label">💳 轉帳資訊</div>
+      <div class="transfer-label">💳 匯款帳號（選擇銀行匯款者請記錄）</div>
       <div class="transfer-bank" id="d-bank">載入中…</div>
       <div class="transfer-acct" id="d-acct">—</div>
       <div class="transfer-holder" id="d-holder"></div>
     </div>
   </div>
 
-  <!-- PRODUCTS -->
   <div class="section">
     <div class="section-title">商品選購</div>
     <div class="products-list" id="products-list">
@@ -172,7 +170,6 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--t1);
     </div>
   </div>
 
-  <!-- ORDER SUMMARY -->
   <div class="section">
     <div class="section-title">訂單摘要</div>
     <div class="summary-card">
@@ -186,7 +183,6 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--t1);
     </div>
   </div>
 
-  <!-- FORM -->
   <div class="section">
     <div class="section-title">填寫資料</div>
     <div class="form-card">
@@ -198,7 +194,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--t1);
         </div>
         <div class="fg">
           <label>座號<span class="req">*</span></label>
-          <input type="number" id="f-seat" placeholder="例：18" min="1" max="60">
+          <input type="number" id="f-seat" placeholder="18" min="1" max="60">
         </div>
       </div>
 
@@ -208,73 +204,95 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--t1);
       </div>
 
       <div class="fg">
-        <label>轉帳帳號後五碼<span class="req">*</span></label>
-        <input type="text" id="f-acct5" placeholder="例：12345" maxlength="5" inputmode="numeric">
-        <div class="input-note">完成匯款後再填寫，請核對帳號</div>
+        <label>繳費方式<span class="req">*</span></label>
+        <div class="pay-options">
+          <div class="pay-opt" id="pay-transfer" onclick="selectPay('transfer')">
+            <div class="pay-opt-icon">🏦</div>
+            <div class="pay-opt-label">銀行匯款</div>
+            <div class="pay-opt-sub">需上傳匯款截圖</div>
+          </div>
+          <div class="pay-opt" id="pay-cash" onclick="selectPay('cash')">
+            <div class="pay-opt-icon">💵</div>
+            <div class="pay-opt-label">現金繳交</div>
+            <div class="pay-opt-sub">親送至家長會</div>
+          </div>
+        </div>
       </div>
 
-      <div class="fr">
+      <div class="conditional" id="zone-transfer">
         <div class="fg">
-          <label>轉帳日期<span class="req">*</span></label>
-          <input type="date" id="f-date">
+          <label>轉帳帳號後五碼<span class="req">*</span></label>
+          <input type="text" id="f-acct5" placeholder="例：12345" maxlength="5" inputmode="numeric">
+          <div class="input-note">完成匯款後再填寫</div>
+        </div>
+        <div class="fr">
+          <div class="fg">
+            <label>轉帳日期<span class="req">*</span></label>
+            <input type="date" id="f-date">
+          </div>
+          <div class="fg">
+            <label>轉帳時間<span class="req">*</span></label>
+            <input type="time" id="f-time">
+          </div>
         </div>
         <div class="fg">
-          <label>轉帳時間<span class="req">*</span></label>
-          <input type="time" id="f-time">
+          <label>匯款截圖<span class="req">*</span></label>
+          <div class="upload-area" id="upload-area">
+            <input type="file" id="f-receipt" accept="image/*" capture="environment" onchange="previewImg(this)">
+            <div class="upload-icon">📷</div>
+            <div class="upload-text" id="upload-text">點此上傳或拍照</div>
+            <div class="upload-hint-text">支援 JPG、PNG，請清楚拍下匯款金額與後五碼</div>
+            <img id="receipt-preview" class="upload-preview" alt="匯款截圖預覽">
+          </div>
+        </div>
+      </div>
+
+      <div class="conditional" id="zone-cash">
+        <div class="notice notice-warn" style="margin:0 0 1rem;border-radius:var(--rs)">
+          <span class="notice-icon">📌</span>
+          <div>請於訂購截止前攜帶現金至家長會辦公室繳交，並告知班級座號，謝謝！</div>
         </div>
       </div>
 
       <div class="fg">
         <label>備註（選填）</label>
-        <textarea id="f-note" rows="2" placeholder="例：需要收據、請幫我留…"></textarea>
+        <textarea id="f-note" rows="2" placeholder="例：需要收據、其他說明…"></textarea>
       </div>
 
     </div>
   </div>
 
-</div><!-- /main-content -->
+</div>
 
-<!-- ========== SUCCESS PAGE ========== -->
 <div id="success-page" class="success-page">
   <div class="success-icon">🎉</div>
   <div class="success-title">訂單送出成功！</div>
-  <div class="success-sub">
-    感謝您支持義賣活動 ❤️<br>
-    請保留匯款截圖，志工媽媽核對後會與您確認。
-  </div>
+  <div class="success-sub" id="success-sub">感謝您支持義賣活動 ❤️</div>
   <div class="order-receipt" id="order-receipt"></div>
   <button class="back-btn" onclick="location.reload()">返回繼續訂購</button>
 </div>
 
-<!-- ========== CLOSED PAGE ========== -->
 <div id="closed-page" class="closed-page">
   <div class="closed-icon">🛍️</div>
-  <div class="closed-title" id="closed-title">目前不在訂購時段</div>
+  <div class="closed-title">目前不在訂購時段</div>
   <div class="closed-msg" id="closed-msg">訂購活動尚未開始，敬請期待！</div>
 </div>
 
-<!-- ========== SUBMIT BAR ========== -->
 <div class="submit-area" id="submit-area">
-  <button class="submit-btn" id="submit-btn" onclick="submitOrder()">
-    確認送出訂單
-  </button>
-  <div class="submit-hint">送出後請依帳號資訊完成匯款</div>
+  <button class="submit-btn" id="submit-btn" onclick="submitOrder()">確認送出訂單</button>
+  <div class="submit-hint" id="submit-hint">請先選擇繳費方式</div>
 </div>
 
 <script>
 // ★ 請將這裡替換成您的 Apps Script 部署網址
-const API = 'https://script.google.com/macros/s/AKfycbxrgnLb9HQ9GX-c8xkHy9hCwwbOKeeCEvIueTwV4airgYoqYb144i3TzhqgmGtLA6loIQ/exec';
+const API = 'https://script.google.com/macros/s/AKfycbzo2yCURKWeNvVejI2y4bj8PajStL7XnPfFv4N9gob-C1hQ6Rthzf9YicIeDwNyE7hMhA/exec';
 
-// ── 狀態 ──────────────────────────────────────────────────────
-let storeData = null;   // { products, settings, period, open }
-let cart = {};          // { productId: qty }
+let storeData = null;
+let cart = {};
+let payMethod = '';
 
-// ── 啟動 ─────────────────────────────────────────────────────
 (async () => {
-  if (API === 'YOUR_SCRIPT_URL') {
-    loadDemo();
-    return;
-  }
+  if (API === 'YOUR_SCRIPT_URL') { loadDemo(); return; }
   try {
     const d = await fetch(API + '?action=getStorefront').then(r => r.json());
     if (!d.ok) throw new Error(d.error);
@@ -286,11 +304,11 @@ let cart = {};          // { productId: qty }
   }
 })();
 
-// ── 示範模式（未設定 API 時顯示） ────────────────────────────
 function loadDemo() {
   storeData = {
     open: true,
-    settings: { bank:'玉山銀行 (808)', acct:'0000-000-000000', holder:'OO國小家長會', title:'班親會義賣活動', subtitle:'感謝您的支持！所得將用於校園美化' },
+    settings: { bank:'玉山銀行 (808)', acct:'0000-000-000000', holder:'大安國小家長會',
+                title:'大安國小家長會義賣', subtitle:'感謝您的支持！所得將用於校園美化' },
     period: { start:'', end:'', msg:'' },
     products: [
       { id:1, name:'手工餅乾禮盒', desc:'媽媽親手製作，共12入，香酥可口', emoji:'🍪', photo:'', price:150, stock:30, min:1, max:5 },
@@ -303,68 +321,52 @@ function loadDemo() {
   render();
 }
 
-// ── 渲染全頁 ─────────────────────────────────────────────────
 function render() {
-  const { settings, period, open, products } = storeData;
-
-  // 頁首
-  document.getElementById('site-title').textContent = settings.title || '班親會義賣';
+  const { settings, period, open } = storeData;
+  document.getElementById('site-title').textContent = settings.title || '大安國小家長會義賣';
   document.getElementById('site-sub').textContent = settings.subtitle || '';
-
-  // 轉帳
   document.getElementById('d-bank').textContent = settings.bank || '請洽管理員';
   document.getElementById('d-acct').textContent = settings.acct || '—';
   document.getElementById('d-holder').textContent = settings.holder ? `戶名：${settings.holder}` : '';
-
-  // 時段
   if (period.end) {
     const rem = new Date(period.end) - new Date();
     if (rem > 0) {
-      const pb = document.getElementById('period-bar');
-      pb.style.display = 'flex';
-      const days = Math.floor(rem/86400000);
-      const hrs  = Math.floor((rem%86400000)/3600000);
+      document.getElementById('period-bar').style.display = 'flex';
+      const days = Math.floor(rem/86400000), hrs = Math.floor((rem%86400000)/3600000);
       document.getElementById('period-text').textContent =
         days > 0 ? `訂購截止：還有 ${days} 天 ${hrs} 小時` : `訂購截止：還有 ${hrs} 小時！`;
     }
   }
-
-  // 關閉狀態
   if (!open) {
     document.getElementById('main-content').style.display = 'none';
     document.getElementById('submit-area').style.display = 'none';
-    const cp = document.getElementById('closed-page');
-    cp.style.display = 'flex';
+    document.getElementById('closed-page').style.display = 'flex';
     document.getElementById('closed-msg').textContent = period.msg || '訂購活動尚未開始，敬請期待！';
     return;
   }
-
-  // 今天日期作為預設
   document.getElementById('f-date').value = new Date().toISOString().split('T')[0];
   document.getElementById('f-time').value = new Date().toTimeString().slice(0,5);
-
-  renderProducts(products);
+  renderProducts(storeData.products);
 }
 
-// ── 渲染商品列表 ─────────────────────────────────────────────
 function renderProducts(products) {
   if (!products.length) {
-    document.getElementById('products-list').innerHTML =
-      '<div style="text-align:center;padding:2rem;color:var(--t3)">目前沒有商品</div>';
+    document.getElementById('products-list').innerHTML = '<div style="text-align:center;padding:2rem;color:var(--t3)">目前沒有商品</div>';
     return;
   }
   document.getElementById('products-list').innerHTML = products.map(p => {
     const so = p.stock <= 0;
     const mx = p.max > 0 ? Math.min(p.max, p.stock) : p.stock;
-    const hint = (p.min > 1 || p.max > 0)
-      ? `每人 ${p.min > 1 ? '最少' + p.min + '件' : ''}${p.min>1&&p.max>0?' · ':''}${p.max > 0 ? '最多' + p.max + '件' : ''}` : '';
-    const photoEl = p.photo
-      ? `<img src="${p.photo}" alt="${p.name}" loading="lazy" onerror="this.parentElement.textContent='${p.emoji||'🎁'}'"/>`
-      : p.emoji || '🎁';
+    const hint = [];
+    if (p.min > 1) hint.push('最少' + p.min + '件');
+    if (p.max > 0) hint.push('最多' + p.max + '件');
+    const imgEl = p.photo
+      ? `<img src="${p.photo}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`
+      : (p.emoji || '🎁');
     return `
-    <div class="product-card${so?' sold-out':''}" id="pc-${p.id}" data-id="${p.id}">
+    <div class="product-card${so?' sold-out':''}" id="pc-${p.id}">
       <div class="product-top">
-        <div class="product-img">${p.photo ? `<img src="${p.photo}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.textContent='${p.emoji||'🎁'}'">` : (p.emoji||'🎁')}</div>
+        <div class="product-img">${imgEl}</div>
         <div class="product-info">
           <div class="product-name">${p.name}</div>
           <div class="product-desc">${p.desc||''}</div>
@@ -375,12 +377,13 @@ function renderProducts(products) {
       <div class="product-bottom">
         ${so
           ? `<div class="sold-out-badge">已售完</div>`
-          : `${hint ? `<div class="qty-hint">${hint}</div>` : '<div></div>'}
-             <div class="qty-control">
-               <button class="qty-btn" onclick="adj(${p.id},-1)">−</button>
-               <div class="qty-display" id="qty-${p.id}">0</div>
-               <button class="qty-btn" onclick="adj(${p.id},1)">+</button>
-               <div class="qty-subtotal" id="sub-${p.id}" style="display:none"></div>
+          : `<div class="qty-hint">${hint.join(' · ')}</div>
+             <div class="qty-wrap">
+               <input type="number" class="qty-inp" id="qty-${p.id}"
+                 value="0" min="0" max="${mx}" inputmode="numeric"
+                 onchange="setQty(${p.id},+this.value)"
+                 oninput="setQty(${p.id},+this.value)">
+               <div class="qty-subtotal" id="sub-${p.id}"></div>
              </div>`
         }
       </div>
@@ -388,62 +391,77 @@ function renderProducts(products) {
   }).join('');
 }
 
-// ── 數量調整 ─────────────────────────────────────────────────
-function adj(id, delta) {
+function setQty(id, v) {
   const p = storeData.products.find(x => x.id === id);
-  if (!p || p.stock <= 0) return;
-  const cur = cart[id] || 0;
+  if (!p) return;
   const mx = p.max > 0 ? Math.min(p.max, p.stock) : p.stock;
-  let nv = cur + delta;
-  if (nv < 0) nv = 0;
-  if (nv > mx) { showToast(`每人最多 ${mx} 件`); return; }
-  if (nv === 0) delete cart[id]; else cart[id] = nv;
-  // 更新顯示
-  document.getElementById('qty-' + id).textContent = nv;
-  const subEl = document.getElementById('sub-' + id);
-  if (nv > 0) { subEl.style.display='block'; subEl.textContent = 'NT$'+(p.price*nv).toLocaleString(); }
-  else { subEl.style.display='none'; }
-  document.getElementById('pc-' + id).classList.toggle('has-qty', nv > 0);
+  if (v < 0) v = 0;
+  if (v > mx) { v = mx; document.getElementById('qty-'+id).value = v; showToast(`每人最多 ${mx} 件`); }
+  if (v === 0) delete cart[id]; else cart[id] = v;
+  const sub = document.getElementById('sub-'+id);
+  sub.textContent = v > 0 ? 'NT$'+(p.price*v).toLocaleString() : '';
+  document.getElementById('pc-'+id).classList.toggle('has-qty', v > 0);
   updateSummary();
 }
 
-// ── 更新訂單摘要 ─────────────────────────────────────────────
 function updateSummary() {
-  const items = Object.entries(cart)
-    .map(([id, q]) => ({ p: storeData.products.find(x => x.id === parseInt(id)), q }))
-    .filter(x => x.p && x.q > 0);
-  const total = items.reduce((s, {p, q}) => s + p.price * q, 0);
-  const area = document.getElementById('summary-items');
-  area.innerHTML = items.length === 0
+  const items = Object.entries(cart).map(([id,q]) => ({ p:storeData.products.find(x=>x.id===+id), q })).filter(x=>x.p&&x.q>0);
+  const total = items.reduce((s,{p,q}) => s+p.price*q, 0);
+  document.getElementById('summary-items').innerHTML = items.length === 0
     ? '<div class="summary-empty">尚未選擇商品</div>'
-    : items.map(({p, q}) =>
-        `<div class="summary-row">
-          <span class="name">${p.name} ×${q}</span>
-          <span>NT$${(p.price*q).toLocaleString()}</span>
-        </div>`).join('');
-  document.getElementById('summary-total').textContent = 'NT$' + total.toLocaleString();
+    : items.map(({p,q}) => `<div class="summary-row"><span class="name">${p.name} ×${q}</span><span>NT$${(p.price*q).toLocaleString()}</span></div>`).join('');
+  document.getElementById('summary-total').textContent = 'NT$'+total.toLocaleString();
 }
 
-// ── 送出訂單 ─────────────────────────────────────────────────
-async function submitOrder() {
-  // 驗證商品
-  const items = Object.entries(cart).map(([id, qty]) => {
-    const p = storeData.products.find(x => x.id === parseInt(id));
-    return { id: parseInt(id), name: p.name, price: p.price, qty };
-  }).filter(x => x.qty > 0);
-  if (items.length === 0) { showToast('請先選擇商品'); return; }
+function selectPay(m) {
+  payMethod = m;
+  document.getElementById('pay-transfer').classList.toggle('selected', m==='transfer');
+  document.getElementById('pay-cash').classList.toggle('selected', m==='cash');
+  document.getElementById('zone-transfer').classList.toggle('show', m==='transfer');
+  document.getElementById('zone-cash').classList.toggle('show', m==='cash');
+  document.getElementById('submit-hint').textContent =
+    m==='transfer' ? '送出後請完成匯款並保留截圖' : '送出後請攜帶現金至家長會繳交';
+}
 
-  // 驗證表單
+function previewImg(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const prev = document.getElementById('receipt-preview');
+  prev.src = URL.createObjectURL(file);
+  prev.style.display = 'block';
+  document.getElementById('upload-text').textContent = '✅ ' + file.name;
+}
+
+async function submitOrder() {
+  const items = Object.entries(cart).map(([id,qty]) => {
+    const p = storeData.products.find(x=>x.id===+id);
+    return { id:+id, name:p.name, price:p.price, qty };
+  }).filter(x=>x.qty>0);
+  if (!items.length) { showToast('請先選擇商品'); return; }
+  if (!payMethod)    { showToast('請選擇繳費方式'); return; }
   const cls  = document.getElementById('f-class').value.trim();
   const seat = document.getElementById('f-seat').value.trim();
   const name = document.getElementById('f-name').value.trim();
-  const a5   = document.getElementById('f-acct5').value.trim();
-  const date = document.getElementById('f-date').value;
-  const time = document.getElementById('f-time').value;
-  if (!cls || !seat || !name || !a5 || !date || !time) { showToast('請填寫所有必填欄位'); return; }
-  if (!/^\d{5}$/.test(a5)) { showToast('轉帳後五碼請填5位數字'); return; }
+  if (!cls||!seat||!name) { showToast('請填寫班級、座號、家長姓名'); return; }
 
-  const total = items.reduce((s, i) => s + i.price * i.qty, 0);
+  let a5='', tDate='', tTime='', receiptB64='';
+  if (payMethod==='transfer') {
+    a5    = document.getElementById('f-acct5').value.trim();
+    tDate = document.getElementById('f-date').value;
+    tTime = document.getElementById('f-time').value;
+    if (!a5||!tDate||!tTime) { showToast('請填寫匯款資訊'); return; }
+    if (!/^\d{5}$/.test(a5)) { showToast('轉帳後五碼請填5位數字'); return; }
+    const file = document.getElementById('f-receipt').files[0];
+    if (!file) { showToast('請上傳匯款截圖'); return; }
+    receiptB64 = await new Promise((res,rej) => {
+      const r = new FileReader();
+      r.onload = () => res(r.result);
+      r.onerror = rej;
+      r.readAsDataURL(file);
+    });
+  }
+
+  const total = items.reduce((s,i) => s+i.price*i.qty, 0);
   const btn = document.getElementById('submit-btn');
   btn.disabled = true;
   btn.innerHTML = '<div class="spin"></div> 送出中…';
@@ -452,53 +470,53 @@ async function submitOrder() {
     let orderNo = 'LOCAL';
     if (API !== 'YOUR_SCRIPT_URL') {
       const d = await fetch(API, {
-        method: 'POST',
-        body: JSON.stringify({ action:'submitOrder', class:cls, seat, name, acct5:a5, transferDate:date, transferTime:time, note:document.getElementById('f-note').value, items, total }),
-        headers: { 'Content-Type': 'text/plain' }
-      }).then(r => r.json());
+        method:'POST',
+        body: JSON.stringify({ action:'submitOrder', class:cls, seat, name, payMethod,
+          acct5:a5, transferDate:tDate, transferTime:tTime,
+          receiptImage: receiptB64, note:document.getElementById('f-note').value, items, total }),
+        headers:{'Content-Type':'text/plain'}
+      }).then(r=>r.json());
       if (!d.ok) throw new Error(d.error);
       orderNo = d.orderNo;
-      // 更新本地庫存
       items.forEach(item => {
-        const p = storeData.products.find(x => x.id === item.id);
-        if (p) p.stock = Math.max(0, p.stock - item.qty);
+        const p = storeData.products.find(x=>x.id===item.id);
+        if (p) p.stock = Math.max(0, p.stock-item.qty);
       });
     }
-    // 成功畫面
-    showSuccess({ orderNo, cls, seat, name, a5, date, items, total, settings: storeData.settings });
+    const s = storeData.settings;
+    document.getElementById('main-content').style.display = 'none';
+    document.getElementById('submit-area').style.display = 'none';
+    document.getElementById('success-page').style.display = 'flex';
+    document.getElementById('success-sub').innerHTML = payMethod==='transfer'
+      ? '感謝您支持義賣活動 ❤️<br>請保留匯款截圖，志工媽媽核對後會與您確認。'
+      : '感謝您支持義賣活動 ❤️<br>請攜帶現金至家長會辦公室繳交，並告知班級座號。';
+    document.getElementById('order-receipt').innerHTML = `
+      <div class="receipt-row"><span class="receipt-label">訂單編號</span><span class="receipt-val">#${orderNo}</span></div>
+      <div class="receipt-row"><span class="receipt-label">班級 / 座號</span><span class="receipt-val">${cls} ${seat}號</span></div>
+      <div class="receipt-row"><span class="receipt-label">家長姓名</span><span class="receipt-val">${name}</span></div>
+      <div class="receipt-row"><span class="receipt-label">訂購商品</span><span class="receipt-val">${items.map(i=>`${i.name}×${i.qty}`).join('<br>')}</span></div>
+      <div class="receipt-row"><span class="receipt-label">繳費方式</span><span class="receipt-val">${payMethod==='transfer'?'銀行匯款':'現金繳交至家長會'}</span></div>
+      ${payMethod==='transfer'?`
+      <div class="receipt-row"><span class="receipt-label">匯款至</span><span class="receipt-val">${s.acct||'—'}</span></div>
+      <div class="receipt-row"><span class="receipt-label">後五碼</span><span class="receipt-val">${a5}</span></div>
+      <div class="receipt-row"><span class="receipt-label">匯款日期</span><span class="receipt-val">${tDate}</span></div>`:''}
+      <div class="receipt-row"><span class="receipt-label">應付總金額</span><span class="receipt-val receipt-total">NT$${total.toLocaleString()}</span></div>`;
+    window.scrollTo(0,0);
   } catch(e) {
-    showToast('送出失敗：' + e.message);
+    showToast('送出失敗：'+e.message);
     btn.disabled = false;
     btn.innerHTML = '確認送出訂單';
   }
 }
 
-// ── 成功畫面 ─────────────────────────────────────────────────
-function showSuccess({ orderNo, cls, seat, name, a5, date, items, total, settings }) {
-  document.getElementById('main-content').style.display = 'none';
-  document.getElementById('submit-area').style.display = 'none';
-  const sp = document.getElementById('success-page');
-  sp.style.display = 'flex';
-  document.getElementById('order-receipt').innerHTML = `
-    <div class="receipt-row"><span class="receipt-label">訂單編號</span><span class="receipt-val">#${orderNo}</span></div>
-    <div class="receipt-row"><span class="receipt-label">班級 / 座號</span><span class="receipt-val">${cls} ${seat}號</span></div>
-    <div class="receipt-row"><span class="receipt-label">家長姓名</span><span class="receipt-val">${name}</span></div>
-    <div class="receipt-row"><span class="receipt-label">訂購商品</span><span class="receipt-val">${items.map(i=>`${i.name}×${i.qty}`).join('<br>')}</span></div>
-    <div class="receipt-row"><span class="receipt-label">轉帳至</span><span class="receipt-val">${settings.acct||'—'}</span></div>
-    <div class="receipt-row"><span class="receipt-label">後五碼</span><span class="receipt-val">${a5}</span></div>
-    <div class="receipt-row"><span class="receipt-label">轉帳日期</span><span class="receipt-val">${date}</span></div>
-    <div class="receipt-row"><span class="receipt-label">應付總金額</span><span class="receipt-val receipt-total">NT$${total.toLocaleString()}</span></div>
-  `;
-  window.scrollTo(0, 0);
-}
-
-// ── Toast 提示 ────────────────────────────────────────────────
 function showToast(msg) {
   const t = document.createElement('div');
   t.textContent = msg;
-  Object.assign(t.style, { position:'fixed', bottom:'90px', left:'50%', transform:'translateX(-50%)', background:'rgba(20,26,22,.9)', color:'#fff', padding:'10px 20px', borderRadius:'24px', fontSize:'14px', fontWeight:'600', zIndex:'999', whiteSpace:'nowrap', fontFamily:'inherit' });
+  Object.assign(t.style,{position:'fixed',bottom:'90px',left:'50%',transform:'translateX(-50%)',
+    background:'rgba(20,26,22,.9)',color:'#fff',padding:'10px 20px',borderRadius:'24px',
+    fontSize:'14px',fontWeight:'600',zIndex:'999',whiteSpace:'nowrap',fontFamily:'inherit'});
   document.body.appendChild(t);
-  setTimeout(() => t.remove(), 2500);
+  setTimeout(()=>t.remove(), 2500);
 }
 </script>
 </body>
