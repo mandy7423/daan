@@ -527,7 +527,7 @@ async function submitOrder() {
         if (p) p.stock = Math.max(0, p.stock-item.qty);
       });
     }
-    const s = storeData.settings; const student = data.student||'';
+    const s = storeData.settings;
     document.getElementById('main-content').style.display = 'none';
     document.getElementById('submit-area').style.display = 'none';
     document.getElementById('success-page').style.display = 'flex';
